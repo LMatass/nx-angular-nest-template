@@ -2,9 +2,9 @@
   "name": "client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "fse",
+  "prefix": "app",
   "sourceRoot": "apps/client/src",
-  "tags": ["type:app", "scope:client"],
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
@@ -16,7 +16,12 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/client/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/client/public"
+          }
+        ],
         "styles": ["apps/client/src/styles.scss"],
         "scripts": []
       },
@@ -54,10 +59,7 @@
           "buildTarget": "client:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/client/proxy.conf.json"
-      }
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -66,11 +68,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/client/**/*.ts", "apps/client/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -83,7 +81,9 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "client:build",
-        "staticFilePath": "dist/apps/client/browser"
+        "port": 4200,
+        "staticFilePath": "dist/apps/client/browser",
+        "spa": true
       }
     }
   }

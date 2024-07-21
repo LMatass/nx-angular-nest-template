@@ -13,9 +13,8 @@ Welcome, this is a nx monorepo template for angular and nestjs
 
 ## Features
 
-- Nx 17 for efficient monorepo management
-- Angular 17 with esbuild for fast and optimized builds
-- Tailwind CSS integration on a separate branch
+- Nx 19 for efficient monorepo management
+- Angular 18 with esbuild for fast and optimized builds
 
 ## Prerequisites
 
